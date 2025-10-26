@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anni Cuisine</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav id="navbar">
+      <h1 class="logo">Anni Cuisine</h1>
+      <ul class="nav-links">
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h2>Fresh • Flavorful • Authentic</h2>
+        <a href="YOUR_GOOGLE_FORM_LINK" class="btn ripple">Order Now</a>
+      </div>
+    </section>
+  </header>
+
+  <section id="about" class="about section reveal">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <div class="image-frame">
+        <img src="images/IMG_6820.jpg" alt="Cooking Image" />
+      </div>
+      <p>
+        Welcome to <strong>Anni Cuisine</strong> — where we are
+        "Embracing the flavors of love and memory in every dish. 🍽️✨ Anni, a 
+        name that resonates with my mom's nickname for me, and our shared passion 
+        for cooking. Who knew it would have bigger, tastier, more fulfilling plans 
+        for me. In her absence, I find comfort and connection through cooking. From battling 
+        stress to spreading smiles, cooking for people brings me joy and comfort. 
+        Join me on this heartfelt journey of flavors.
+      </p>
+    </div>
+  </section>
+
+  <section id="menu" class="menu section reveal">
+    <h2>Our Menu</h2>
+    <div class="menu-list">
+      <div class="menu-item">
+        <img src="images/IMG_6820.jpg" alt="Jollof Rice">
+        <div class="menu-info">
+          <h3>Jollof Rice</h3>
+          <p>Classic smoky jollof with grilled chicken and fried plantain. A true crowd favorite.</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="images/IMG_6820.jpg" alt="Pepper Soup">
+        <div class="menu-info">
+          <h3>Pepper Soup</h3>
+          <p>Hot, spicy, and rich broth made with tender goat meat and fragrant herbs.</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="images/IMG_6820.jpg" alt="Fried Yam">
+        <div class="menu-info">
+          <h3>Fried Yam & Stew</h3>
+          <p>Golden fried yam with our signature spicy pepper sauce. Crispy and satisfying.</p>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="images/IMG_6820.jpg" alt="Efo Riro">
+        <div class="menu-info">
+          <h3>Efo Riro</h3>
+          <p>Delicious spinach stew simmered with pepper, fish, and beef — full of bold flavor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact section reveal">
+    <h2>Contact Us</h2>
+    <p>Click below to place your order or reach out for catering and events.</p>
+    <a href="YOUR_GOOGLE_FORM_LINK" class="btn ripple">Order Now</a>
+    <p>Email: annicuisine@example.com | Instagram: @anni.cuisine</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Anni Cuisine — Designed with ❤️</p>
+  </footer>
+
+  <script>
+    // Navbar shrink and animation
+    window.addEventListener("scroll", function() {
+      const navbar = document.getElementById("navbar");
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      reveals.forEach((el) => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 100;
+        if (revealTop < windowHeight - revealPoint) el.classList.add("active");
+      });
+    });
+
+    // Parallax hero background
+    window.addEventListener("scroll", () => {
+      const hero = document.querySelector(".hero");
+      let offset = window.scrollY * 0.4;
+      hero.style.backgroundPositionY = offset + "px";
+    });
+
+    // Ripple button effect
+    document.querySelectorAll('.ripple').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple-effect');
+        ripple.style.left = e.offsetX + 'px';
+        ripple.style.top = e.offsetY + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  </script>
+</body>
+</html>
