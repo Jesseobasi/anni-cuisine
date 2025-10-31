@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Anni Cuisine</title>
+    
+    <style>
+        /* --- Basic Setup --- */
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .menu-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* --- Header (from your image) --- */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-title {
+            font-family: "Georgia", "Times New Roman", serif;
+            color: #E0C068; /* Gold color */
+            font-weight: normal;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        header h2 {
+            font-family: "Georgia", "Times New Roman", serif;
+            color: #E0C068;
+            font-size: 2rem;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        /* Gold underline */
+        header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #E0C068;
+            margin: 8px auto 0;
+        }
+
+        /* --- Search Bar --- */
+        .search-wrapper {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #search-bar {
+            width: 60%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            background-color: #2b2b2b;
+            border: 1px solid #444;
+            border-radius: 25px;
+            color: #f0f0f0;
+        }
+
+        #search-bar:focus {
+            outline: none;
+            border-color: #E0C068;
+        }
+
+        /* --- Tab Navigation --- */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #333;
+        }
+
+        .tab-link {
+            font-family: "Georgia", "Times New Roman", serif;
+            font-size: 1.25rem;
+            color: #aaa;
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: color 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px; /* Aligns with parent border */
+        }
+
+        .tab-link:hover {
+            color: #f0f0f0;
+        }
+
+        /* Active tab style */
+        .tab-link.active {
+            color: #E0C068;
+            border-bottom-color: #E0C068;
+        }
+
+        /* --- Tab Content --- */
+        .tab-content {
+            display: none; /* Hide all tabs by default */
+        }
+
+        .tab-content.active {
+            display: block; /* Show only the active tab */
+        }
+
+        /* --- Menu Grid (for "many foods") --- */
+        .menu-grid {
+            display: grid;
+            /* This creates a responsive grid */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Food Card (Styled like your image) --- */
+        .food-card {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            /* We'll use this class in JS for searching */
+        }
+
+        .food-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .food-card h3 {
+            font-family: "Georgia", "Times New Roman", serif;
+            color: #E0C068;
+            margin: 0 0 8px 0;
+            font-size: 1.4rem;
+            font-weight: normal;
+        }
+
+        .food-card p {
+            margin: 0;
+            color: #bbb;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <header>
+            <h1 class="logo-title">Anni Cuisine</h1>
+            <h2>Our Menu</h2>
+        </header>
+
+        <div class="search-wrapper">
+            <input type="search" id="search-bar" placeholder="Search for a dish...">
+        </div>
+
+        <nav class="tab-nav">
+            <button class="tab-link active" data-tab="african">African</button>
+            <button class="tab-link" data-tab="asian">Asian</button>
+            <button class="tab-link" data-tab="european">European</button>
+            <button class="tab-link" data-tab="american">American</button>
+
+        </nav>
+
+        <div id="african" class="tab-content active">
+            <div class="menu-grid">
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Jollof Rice">
+                    <div class="food-info">
+                        <h3>Jollof Rice</h3>
+                        <p>Classic smoky jollof with grilled chicken and fried plantain. A true crowd favorite.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Pepper Soup">
+                    <div class="food-info">
+                        <h3>Pepper Soup</h3>
+                        <p>Hot, spicy, and rich broth made with tender goat meat and fragrant herbs.</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div id="asian" class="tab-content">
+            <div class="menu-grid">
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Pad Thai">
+                    <div class="food-info">
+                        <h3>Pad Thai</h3>
+                        <p>Stir-fried rice noodles with shrimp, tofu, peanuts, and a tangy-sweet sauce.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Ramen">
+                    <div class="food-info">
+                        <h3>Tonkotsu Ramen</h3>
+                        <p>Rich pork bone broth, chashu pork, soft-boiled egg, and fresh noodles.</p>
+                    </div>
+                </div>
+                 </div>
+        </div>
+
+        <div id="european" class="tab-content">
+            <div class="menu-grid">
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Carbonara">
+                    <div class="food-info">
+                        <h3>Carbonara</h3>
+                        <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Carbonara">
+                    <div class="food-info">
+                        <h3>Carbonara</h3>
+                        <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="american" class="tab-content">
+            <div class="menu-grid">
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Mac & Cheese">
+                    <div class="food-info">
+                        <h3>Mac & Cheese</h3>
+                        <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="images/test.jpg" alt="Soul Food">
+                    <div class="food-info">
+                        <h3>Soul Food</h3>
+                        <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // --- Tab Navigation Logic ---
+            const tabLinks = document.querySelectorAll(".tab-link");
+            const tabContents = document.querySelectorAll(".tab-content");
+
+            tabLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    const tabId = link.getAttribute("data-tab");
+
+                    // Remove 'active' class from all links and content
+                    tabLinks.forEach(item => item.classList.remove("active"));
+                    tabContents.forEach(item => item.classList.remove("active"));
+
+                    // Add 'active' class to the clicked link and target content
+                    link.classList.add("active");
+                    document.getElementById(tabId).classList.add("active");
+                });
+            });
+
+            // --- Search Filter Logic ---
+            const searchBar = document.getElementById("search-bar");
+            const foodCards = document.querySelectorAll(".food-card");
+
+            searchBar.addEventListener("keyup", (e) => {
+                // Get the search term and convert to lower case
+                const searchTerm = e.target.value.toLowerCase();
+
+                // Loop through all food cards
+                foodCards.forEach(card => {
+                    // Get the text from the card's h3 and p tags
+                    const title = card.querySelector("h3").textContent.toLowerCase();
+                    const description = card.querySelector("p").textContent.toLowerCase();
+                    const cardText = title + description;
+
+                    // Check if the card's text includes the search term
+                    if (cardText.includes(searchTerm)) {
+                        // If it matches, make sure it's visible
+                        // Use 'flex' since the card's display is 'flex'
+                        card.style.display = "flex";
+                    } else {
+                        // If it doesn't match, hide it
+                        card.style.display = "none";
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
