@@ -33,7 +33,7 @@
     <section class="hero">
       <div class="video-wrapper">
         <video id="hero-video" autoplay loop muted playsinline>
-          <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4">
+          <source src="images/vid.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -153,13 +153,10 @@
 
     // Staggered Scroll Reveal
     window.addEventListener("scroll", () => {
-      // This selects ALL elements with .reveal-item
       const reveals = document.querySelectorAll(".reveal-item");
       const windowHeight = window.innerHeight;
       const revealPoint = 100;
       
-      // We need a way to apply delays only to items in the same group
-      // This is a simple way to group them by their parent section
       let delays = {};
 
       reveals.forEach((el) => {
@@ -172,15 +169,11 @@
         
         if (revealTop < windowHeight - revealPoint) {
           if (!el.classList.contains("active")) {
-            // Apply delay only when first activating
             el.style.transitionDelay = delays[parentSection] + "ms";
             el.classList.add("active");
             delays[parentSection] += 150; // Each card appears 150ms after the last in its group
           }
         } else {
-          // Optional: Reset if you want them to re-animate when scrolling up
-          // el.classList.remove("active"); 
-          // el.style.transitionDelay = "0ms";
         }
       });
     });
@@ -191,8 +184,6 @@
       const heroVideo = document.getElementById("hero-video");
       if (heroVideo) {
         let offset = window.scrollY * 0.4;
-        // Applying parallax to a video is trickier, we can scale it
-        // For now, let's keep the original parallax JS disabled for the video
       }
     });
 
