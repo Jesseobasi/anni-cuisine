@@ -6,16 +6,37 @@
   <title>Annis Cuisine</title>
   <link rel="stylesheet" href="./style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <link rel="icon" href="images/headshot.jpg" type="image/jpeg">
 </head>
 <body>
+
   <header>
     <nav id="navbar">
-      <h1 class="logo">Anni Cuisine</h1>
-      <ul class="nav-links">
-      </ul>
+      <div class="nav-container">
+        <h1 class="logo"><a href="#">Anni Cuisine</a></h1>
+      
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="faq.html">FAQ</a></li> <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <div class="menu-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
     </nav>
 
     <section class="hero">
+      <div class="video-wrapper">
+        <video id="hero-video" autoplay loop muted playsinline>
+          <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div class="overlay"></div>
       <div class="hero-content">
         <h2>Fresh • Flavorful • Authentic</h2>
@@ -24,7 +45,7 @@
     </section>
   </header>
 
-  <section id="about" class="about section reveal">
+  <section id="about" class="about section">
     <h2>About Us</h2>
     <div class="about-content">
       <div class="image-frame">
@@ -42,42 +63,82 @@
     </div>
   </section>
 
-  <section id="menu" class="menu section reveal">
+  <section id="menu" class="menu section">
     <h2>Our Menu</h2>
-      <div class="menu-list">
-        <a href="menu.html" class="menu-item">
-          <img src="images/test.jpg" alt="Jollof Rice">
-          <div class="menu-info">
-            <h3>Jollof Rice</h3>
-            <p>Classic smoky jollof with grilled chicken and fried plantain. A true crowd favorite.</p>
-          </div>
-        </a>
+    <div class="menu-list">
+      
+      <a href="menu.html" class="menu-item reveal-item">
+        <img src="images/test.jpg" alt="Jollof Rice">
+        <div class="menu-info">
+          <h3>Jollof Rice</h3>
+          <p>Classic smoky jollof with grilled chicken and fried plantain. A true crowd favorite.</p>
+        </div>
+      </a>
 
-        <a href="menu.html" class="menu-item">
-          <img src="images/test.jpg" alt="Pepper Soup">
-          <div class="menu-info">
-            <h3>Pepper Soup</h3>
-            <p>Hot, spicy, and rich broth made with tender goat meat and fragrant herbs.</p>
-          </div>
-        </a>
+      <a href="menu.html" class="menu-item reveal-item">
+        <img src="images/test.jpg" alt="Pepper Soup">
+        <div class="menu-info">
+          <h3>Pepper Soup</h3>
+          <p>Hot, spicy, and rich broth made with tender goat meat and fragrant herbs.</p>
+        </div>
+      </a>
 
-        <a href="menu.html" class="menu-item">
-          <img src="images/test.jpg" alt="Fried Yam & Stew">
-          <div class="menu-info">
-            <h3>Fried Yam & Stew</h3>
-            <p>Golden fried yam with our signature spicy pepper sauce. Crispy and satisfying.</p>
-          </div>
+      <a href="menu.html" class="menu-item reveal-item">
+        <img src="images/test.jpg" alt="Fried Yam & Stew">
+        <div class="menu-info">
+          <h3>Fried Yam & Stew</h3>
+          <p>Golden fried yam with our signature spicy pepper sauce. Crispy and satisfying.</p>
+        </div>
+      </a>
+
+    </div>
+    
+    <a href="menu.html" class="btn ripple" style="margin-top: 40px;">View Full Menu</a>
+  </section>
+
+  <section id="policies" class="policies section">
+    <h2>Our Policies</h2>
+    <div class="policies-container">
+      
+      <div class="policy-card reveal-item">
+        <h3>Deposits</h3>
+        <p>A 50% non-refundable deposit is required for all catering and large orders to secure your date.</p>
+      </div>
+      
+      <div class="policy-card reveal-item">
+        <h3>Refunds</h3>
+        <p>Due to the nature of our food service, we do not offer refunds. If you are unsatisfied, please reach out to us.</p>
+      </div>
+      
+      <div class="policy-card reveal-item">
+        <h3>Cancellations</h3>
+        <p>Cancellations for catering must be made at least 72 hours in advance. The deposit remains non-refundable.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact section">
+    <h2>Contact Us</h2>
+    <p>Click below to place your order or reach out for catering and events.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmhf9FQHt6YEx2Cs3tbW9x965It2qFUQLdAd4i3x4dcL3q5Q/viewform?usp=header" class="btn ripple">Order Now</a>
+    
+    <div class="contact-details">
+      <p>Email: <a href="mailto:annicuisine@example.com">annicuisine@example.com</a></p>
+      
+      <div class="social-links">
+        <a href="#" target="_blank" class="social-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          Instagram
+        </a>
+        <a href="#" target="_blank" class="social-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+          Twitter
         </a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact section reveal">
-    <h2>Contact Us</h2>
-    <p>Click below to place your order or reach out for catering and events.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmhf9FQHt6YEx2Cs3tbW9x965It2qFUQLdAd4i3x4dcL3q5Q/viewform?usp=header" class="btn ripple">Order Now</a>
-    <p>Email: annicuisine@example.com | Instagram: @anni.cuisine</p>
-  </section>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmhf9FQHt6YEx2Cs3tbW9x965It2qFUQLdAd4i3x4dcL3q5Q/viewform?usp=header" class="btn sticky-order-btn ripple">Order Now</a>
 
   <footer>
     <p>© 2025 Annis Cuisine — Designed with ❤️</p>
@@ -90,22 +151,49 @@
       navbar.classList.toggle("scrolled", window.scrollY > 50);
     });
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll(".reveal");
+    // Staggered Scroll Reveal
     window.addEventListener("scroll", () => {
+      // This selects ALL elements with .reveal-item
+      const reveals = document.querySelectorAll(".reveal-item");
+      const windowHeight = window.innerHeight;
+      const revealPoint = 100;
+      
+      // We need a way to apply delays only to items in the same group
+      // This is a simple way to group them by their parent section
+      let delays = {};
+
       reveals.forEach((el) => {
-        const windowHeight = window.innerHeight;
         const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 100;
-        if (revealTop < windowHeight - revealPoint) el.classList.add("active");
+        const parentSection = el.closest('section').id;
+
+        if (!delays[parentSection]) {
+            delays[parentSection] = 0;
+        }
+        
+        if (revealTop < windowHeight - revealPoint) {
+          if (!el.classList.contains("active")) {
+            // Apply delay only when first activating
+            el.style.transitionDelay = delays[parentSection] + "ms";
+            el.classList.add("active");
+            delays[parentSection] += 150; // Each card appears 150ms after the last in its group
+          }
+        } else {
+          // Optional: Reset if you want them to re-animate when scrolling up
+          // el.classList.remove("active"); 
+          // el.style.transitionDelay = "0ms";
+        }
       });
     });
 
-    // Parallax hero background
+
+    // Parallax hero background (This will only affect the video if it's not full-screen, but it's okay to leave)
     window.addEventListener("scroll", () => {
-      const hero = document.querySelector(".hero");
-      let offset = window.scrollY * 0.4;
-      hero.style.backgroundPositionY = offset + "px";
+      const heroVideo = document.getElementById("hero-video");
+      if (heroVideo) {
+        let offset = window.scrollY * 0.4;
+        // Applying parallax to a video is trickier, we can scale it
+        // For now, let's keep the original parallax JS disabled for the video
+      }
     });
 
     // Ripple button effect
@@ -118,6 +206,15 @@
         this.appendChild(ripple);
         setTimeout(() => ripple.remove(), 600);
       });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      navLinks.classList.toggle("active");
     });
   </script>
 </body>
