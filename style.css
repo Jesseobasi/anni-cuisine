@@ -454,6 +454,154 @@ footer {
   margin: 0;
 }
 
+/* === NEW, CORRECTED MENU PAGE STYLES === */
+.menu-page-section {
+  padding-top: 150px; /* Add padding to clear the fixed navbar */
+  min-height: 70vh;
+}
+
+.menu-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* This styles the "Our Menu" h2 on this page */
+.menu-container h2 {
+  font-family: 'Playfair Display', serif;
+  color: #e0b973;
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  position: relative;
+  text-align: center;
+}
+
+/* This adds the gold underline */
+.menu-container h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #e0b973, #f5d48b);
+  margin: 10px auto 0;
+}
+
+/* --- Search Bar --- */
+.search-wrapper {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+#search-bar {
+  width: 60%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 25px;
+  color: #f0f0f0;
+  transition: border-color 0.3s;
+}
+
+#search-bar:focus {
+  outline: none;
+  border-color: #e0b973;
+}
+
+/* --- NEW PILL-BUTTON TAB STYLE --- */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  gap: 15px; /* Adds space between the buttons */
+}
+
+.tab-link {
+  font-family: 'Poppins', sans-serif; /* Match your button font */
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f5f5;
+  background: #1a1a1a; /* Dark background for inactive */
+  border: 1px solid #333;
+  border-radius: 25px; /* Pill shape */
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+  background: #2a2a2a;
+  color: #e0b973; /* Gold text on hover */
+  transform: translateY(-2px);
+}
+
+.tab-link.active {
+  /* This matches your main .btn style */
+  background: linear-gradient(90deg, #e0b973, #f5d48b);
+  color: #0b0b0b; /* Dark text on gold */
+  border-color: #e0b973;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(224,185,115,0.4);
+}
+
+/* --- Tab Content --- */
+.tab-content {
+  display: none; /* Hide all tabs by default */
+}
+
+.tab-content.active {
+  display: block; /* Show only the active tab */
+}
+
+/* --- Menu Grid --- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+/* --- Food Card --- */
+.food-card {
+  background-color: #1a1a1a; /* Matches policy cards */
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.food-card:hover {
+  transform: translateY(-5px);
+  background-color: #222;
+}
+
+.food-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.food-card h3 {
+  font-family: 'Playfair Display', serif;
+  color: #e0b973; /* Matches site theme */
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.food-card p {
+  margin: 0;
+  color: #ddd; /* Matches site theme */
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
@@ -527,145 +675,4 @@ footer {
     font-size: 0.8rem;
     padding: 20px;
   }
-}
-
-.menu-page-section {
-  padding-top: 150px; /* Add padding to clear the fixed navbar */
-  min-height: 70vh;
-}
-
-.menu-container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* This styles the "Our Menu" h2 on this page */
-.menu-container h2 {
-  font-family: 'Playfair Display', serif;
-  color: #e0b973;
-  font-size: 2.4rem;
-  margin-bottom: 40px;
-  position: relative;
-  text-align: center;
-}
-
-/* This adds the gold underline */
-.menu-container h2::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #e0b973, #f5d48b);
-  margin: 10px auto 0;
-}
-
-/* --- Search Bar --- */
-.search-wrapper {
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: center;
-}
-
-#search-bar {
-  width: 60%;
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 25px;
-  color: #f0f0f0;
-  transition: border-color 0.3s;
-}
-
-#search-bar:focus {
-  outline: none;
-  border-color: #e0b973;
-}
-
-/* --- Tab Navigation --- */
-.tab-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #333;
-}
-
-.tab-link {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  color: #aaa;
-  background: none;
-  border: none;
-  padding: 15px 25px;
-  cursor: pointer;
-  transition: color 0.3s;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px; /* Aligns with parent border */
-}
-
-.tab-link:hover {
-  color: #f0f0f0;
-}
-
-.tab-link.active {
-  color: #e0b973;
-  border-bottom-color: #e0b973;
-}
-
-/* --- Tab Content --- */
-.tab-content {
-  display: none; /* Hide all tabs by default */
-}
-
-.tab-content.active {
-  display: block; /* Show only the active tab */
-}
-
-/* --- Menu Grid --- */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
-}
-
-/* --- Food Card --- */
-.food-card {
-  background-color: #1a1a1a; /* Matches policy cards */
-  border-radius: 12px;
-  border: 1px solid #2a2a2a;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 15px;
-  transition: transform 0.3s, background-color 0.3s;
-}
-
-.food-card:hover {
-  transform: translateY(-5px);
-  background-color: #222;
-}
-
-.food-card img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.food-card h3 {
-  font-family: 'Playfair Display', serif;
-  color: #e0b973; /* Matches site theme */
-  margin: 0 0 8px 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-
-.food-card p {
-  margin: 0;
-  color: #ddd; /* Matches site theme */
-  line-height: 1.5;
-  font-size: 0.95rem;
 }

@@ -15,14 +15,12 @@
       <nav id="navbar">
         <div class="nav-container">
           <h1 class="logo"><a href="index.html">Anni Cuisine</a></h1>
-          
           <ul class="nav-links">
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#menu">Menu</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="index.html#contact">Contact</a></li>
           </ul>
-          
           <div class="menu-toggle">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -36,9 +34,9 @@
       <div class="menu-container">
           
           <h2>Our Menu</h2>
-  
+
           <div class="search-wrapper">
-              <input type="search" id="search-bar" placeholder="Search for a dish...">
+              <input type="search" id="search-bar" placeholder="Search this category...">
           </div>
   
           <nav class="tab-nav">
@@ -50,78 +48,22 @@
   
           <div id="african" class="tab-content active">
               <div class="menu-grid">
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Jollof Rice">
-                      <div class="food-info">
-                          <h3>Jollof Rice</h3>
-                          <p>Classic smoky jollof with grilled chicken and fried plantain. A true crowd favorite.</p>
-                      </div>
                   </div>
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Pepper Soup">
-                      <div class="food-info">
-                          <h3>Pepper Soup</h3>
-                          <p>Hot, spicy, and rich broth made with tender goat meat and fragrant herbs.</p>
-                      </div>
-                  </div>
-              </div>
           </div>
   
           <div id="asian" class="tab-content">
               <div class="menu-grid">
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Pad Thai">
-                      <div class="food-info">
-                          <h3>Pad Thai</h3>
-                          <p>Stir-fried rice noodles with shrimp, tofu, peanuts, and a tangy-sweet sauce.</p>
-                      </div>
                   </div>
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Ramen">
-                      <div class="food-info">
-                          <h3>Tonkotsu Ramen</h3>
-                          <p>Rich pork bone broth, chashu pork, soft-boiled egg, and fresh noodles.</p>
-                      </div>
-                  </div>
-              </div>
           </div>
   
           <div id="european" class="tab-content">
               <div class="menu-grid">
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Carbonara">
-                      <div class="food-info">
-                          <h3>Carbonara</h3>
-                          <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
-                      </div>
                   </div>
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Carbonara">
-                      <div class="food-info">
-                          <h3>Carbonara</h3>
-                          <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
-                      </div>
-                  </div>
-              </div>
           </div>
   
           <div id="american" class="tab-content">
               <div class="menu-grid">
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Mac & Cheese">
-                      <div class="food-info">
-                          <h3>Mac & Cheese</h3>
-                          <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
-                      </div>
                   </div>
-                  <div class="food-card">
-                      <img src="images/test.jpg" alt="Soul Food">
-                      <div class="food-info">
-                          <h3>Soul Food</h3>
-                          <p>Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper.</p>
-                      </div>
-                  </div>
-              </div>
           </div>
   
       </div>
@@ -147,47 +89,94 @@
         navLinks.classList.toggle("active");
       });
 
-      // --- Tab Navigation Logic ---
+      // --- Tab and Search Logic ---
       const tabLinks = document.querySelectorAll(".tab-link");
       const tabContents = document.querySelectorAll(".tab-content");
+      const searchBar = document.getElementById("search-bar");
 
       tabLinks.forEach(link => {
           link.addEventListener("click", () => {
               const tabId = link.getAttribute("data-tab");
-
-              // Remove 'active' class from all links and content
               tabLinks.forEach(item => item.classList.remove("active"));
               tabContents.forEach(item => item.classList.remove("active"));
-
-              // Add 'active' class to the clicked link and target content
               link.classList.add("active");
               document.getElementById(tabId).classList.add("active");
-          });
-      });
-
-      // --- Search Filter Logic ---
-      const searchBar = document.getElementById("search-bar");
-      const foodCards = document.querySelectorAll(".food-card");
-
-      searchBar.addEventListener("keyup", (e) => {
-          // Get the search term and convert to lower case
-          const searchTerm = e.target.value.toLowerCase();
-
-          // Loop through all food cards
-          foodCards.forEach(card => {
-              // Get the text from the card's h3 and p tags
-              const title = card.querySelector("h3").textContent.toLowerCase();
-              const description = card.querySelector("p").textContent.toLowerCase();
-              const cardText = title + description;
-
-              // Check if the card's text includes the search term
-              if (cardText.includes(searchTerm)) {
+              
+              // --- Reset search when tab changes ---
+              searchBar.value = ""; // Clear the search bar text
+              
+              // Make all food cards visible again
+              const allFoodCards = document.querySelectorAll(".food-card");
+              allFoodCards.forEach(card => {
                   card.style.display = "flex";
-              } else {
-                  card.style.display = "none";
-              }
+              });
           });
       });
+
+      // --- Menu Loading Logic ---
+      document.addEventListener("DOMContentLoaded", () => {
+        loadMenu();
+      });
+
+      async function loadMenu() {
+        try {
+          const response = await fetch('menu-data.json');
+          const menuData = await response.json();
+
+          const containers = {
+            african: document.querySelector("#african .menu-grid"),
+            asian: document.querySelector("#asian .menu-grid"),
+            european: document.querySelector("#european .menu-grid"),
+            american: document.querySelector("#american .menu-grid")
+          };
+
+          menuData.forEach(item => {
+            const foodCardHTML = `
+              <div class="food-card">
+                  <img src="${item.image}" alt="${item.name}">
+                  <div class="food-info">
+                      <h3>${item.name}</h3>
+                      <p>${item.description}</p>
+                  </div>
+              </div>
+            `;
+            if (containers[item.category]) {
+              containers[item.category].innerHTML += foodCardHTML;
+            }
+          });
+
+          // Setup the search filter *after* cards are loaded
+          setupSearchFilter();
+
+        } catch (error) {
+          console.error("Failed to load menu:", error);
+        }
+      }
+
+      // --- Search Filter Logic (Per-Tab) ---
+      function setupSearchFilter() {
+        searchBar.addEventListener("keyup", (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            // 1. Find the currently active tab
+            const activeTab = document.querySelector(".tab-content.active");
+            
+            // 2. Select ONLY the food cards within that active tab
+            const foodCards = activeTab.querySelectorAll(".food-card");
+
+            // 3. Loop through only those cards
+            foodCards.forEach(card => {
+                const title = card.querySelector("h3").textContent.toLowerCase();
+                const description = card.querySelector("p").textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+      }
     </script>
 </body>
 </html>

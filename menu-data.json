@@ -1,0 +1,74 @@
+[
+  {
+    "category": "african",
+    "name": "Jollof Rice",
+    "image": "images/test.jpg",
+    "description": "Classic smoky jollof with grilled chicken and fried plantain. A true crowd favorite."
+  },
+  {
+    "category": "african",
+    "name": "Fried Rice",
+    "image": "images/test.jpg",
+    "description": "Hot, spicy, and rich broth made with tender goat meat and fragrant herbs."
+  },
+  {
+    "category": "african",
+    "name": "Puff Puff",
+    "image": "images/test.jpg",
+    "description": "Hot, spicy, and rich broth made with tender goat meat and fragrant herbs."
+  },
+  {
+    "category": "african",
+    "name": "Meat Pie",
+    "image": "images/test.jpg",
+    "description": "Hot, spicy, and rich broth made with tender goat meat and fragrant herbs."
+  },
+  {
+    "category": "african",
+    "name": "Plantains",
+    "image": "images/test.jpg",
+    "description": "Hot, spicy, and rich broth made with tender goat meat and fragrant herbs."
+  },
+  {
+    "category": "african",
+    "name": "Pepper Soup",
+    "image": "images/test.jpg",
+    "description": "Hot, spicy, and rich broth made with tender goat meat and fragrant herbs."
+  },
+  {
+    "category": "asian",
+    "name": "Pad Thai",
+    "image": "images/test.jpg",
+    "description": "Stir-fried rice noodles with shrimp, tofu, peanuts, and a tangy-sweet sauce."
+  },
+  {
+    "category": "asian",
+    "name": "Tonkotsu Ramen",
+    "image": "images/test.jpg",
+    "description": "Rich pork bone broth, chashu pork, soft-boiled egg, and fresh noodles."
+  },
+  {
+    "category": "european",
+    "name": "Carbonara",
+    "image": "images/test.jpg",
+    "description": "Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper."
+  },
+  {
+    "category": "european",
+    "name": "Carbonara (Copy)",
+    "image": "images/test.jpg",
+    "description": "Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper."
+  },
+  {
+    "category": "american",
+    "name": "Mac & Cheese",
+    "image": "images/test.jpg",
+    "description": "Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper."
+  },
+  {
+    "category": "american",
+    "name": "Soul Food",
+    "image": "images/test.jpg",
+    "description": "Classic Italian pasta with egg, pecorino cheese, guanciale, and black pepper."
+  }
+]
