@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Annis Cuisine</title>
+    
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    
+    <link rel="icon" href="images/headshot.jpg" type="image/jpeg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e0b973">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Annis Cuisine">
+    <link rel="apple-touch-icon" href="images/headshot.jpg">
+</head>
+<body id="cart-page"> 
+    
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <header>
+      <nav id="navbar">
+        <div class="nav-container">
+          <h1 class="logo"><a href="index.html">Annis Cuisine</a></h1>
+          <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li class="mobile-cart-link"><a href="cart.html" id="mobile-cart-icon">Cart (0)</a></li>
+          </ul>
+          <a href="cart.html" id="cart-icon" class="btn-cart" style="margin-left: 20px; color: #e0b973; font-weight: bold;">Cart (0)</a>
+          <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="page-header section" style="padding-top: 150px; text-align: center;">
+        <h2>Your Cart</h2>
+        <p style="color: #aaa;">Review your items and complete your order inquiry.</p>
+    </section>
+
+    <main class="section cart-section">
+      <div class="cart-container">
+        
+        <h3 style="color: #e0b973;">Step 1: Review Your Cart</h3>
+        <div id="cart-items-container">
+          </div>
+        
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>$<span id="cart-subtotal">0.00</span></span>
+          </div>
+          <div class="summary-row">
+            <span>Processing Fee</span>
+            <span>$<span id="cart-processing-fee">1.99</span></span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery Fee</span>
+            <span>$<span id="cart-delivery-fee">0.00</span></span>
+          </div>
+          <div class="summary-row grand-total">
+            <strong>Grand Total</strong>
+            <strong>$<span id="cart-grand-total">0.00</span></strong>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 3rem; color: #e0b973;">Step 2: Select Your Pickup/Delivery Slot</h3>
+        <div class="booking-container">
+          
+          <div id="calendar-column">
+            <label style="color: #fff; display:block; margin-bottom:10px;">1. Select a Date</label>
+            <div id="calendar-container"></div>
+          </div>
+          
+          <div id="timeslot-column">
+            <label id="timeslot-label" style="color: #fff; display:block; margin-bottom:10px;">2. Select a Time</label>
+            <div id="timeslot-container">
+              <p class="timeslot-placeholder" style="color: #888;">Please select a valid date to see available times.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <form id="checkout-form" class="checkout-form" action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST">
+          
+          <h3 style="margin-top: 1rem; color: #e0b973;">Step 3: Your Information</h3>
+          <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">This is an order inquiry. We will contact you to confirm payment details.</p>
+
+          <div class="form-group">
+            <label>Delivery Option</label>
+            <div class="form-group-options">
+              <label for="pickup-radio" class="radio-option">
+                <input type="radio" id="pickup-radio" name="delivery-option" value="pickup" checked>
+                <span>Pickup (Free)</span>
+              </label>
+              <label for="delivery-radio" class="radio-option">
+                <input type="radio" id="delivery-radio" name="delivery-option" value="delivery">
+                <span>Delivery ($4.99)</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="payment-method">Preferred Payment</label>
+            <select id="payment-method" name="payment-method" required>
+              <option value="">Select a method...</option>
+              <option value="Zelle">Zelle</option>
+              <option value="Cash App">Cash App</option>
+              <option value="Venmo">Venmo</option>
+            </select>
+          </div>
+          
+          <input type="hidden" id="order-items" name="order_items">
+          <input type="hidden" id="order-subtotal" name="order_subtotal">
+          <input type="hidden" id="order-fees" name="order_fees">
+          <input type="hidden" id="order-grand-total" name="order_grand_total">
+          <input type="hidden" id="order-delivery-option" name="order_delivery_option">
+          <input type="hidden" id="order-pickup-time" name="order_pickup_time">
+          
+          <div class="form-group-agree">
+            <input type="checkbox" id="agree-policy" name="policy_agreement" value="agreed" required>
+            <label for="agree-policy">
+              I have read, understood, and agree to the 
+              <a href="index.html#policies" target="_blank">Payment & Cancellation policies</a>.
+            </label>
+          </div>
+          
+          <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Submit Order Inquiry</button>
+        </form>
+
+      </div>
+    </main>
+
+    <footer>
+      <p style="text-align:center; padding: 30px; color: #666;">© 2025 Annis Cuisine — Designed with ❤️</p>
+    </footer>
+
+    <script src="cart.js"></script> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <script>
+      // Navbar shrink
+      window.addEventListener("scroll", function() {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      // Mobile menu toggle
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      if(menuToggle) {
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("active");
+            navLinks.classList.toggle("active");
+        });
+      }
+
+      // Preloader Script
+      const preloader = document.getElementById('preloader');
+      window.addEventListener('load', () => {
+        preloader.classList.add('loaded');
+      });
+
+      // PWA Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('ServiceWorker registration successful');
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+</body>
+</html>
