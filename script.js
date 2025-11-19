@@ -9,22 +9,23 @@ const navLinks = document.querySelector(".nav-links");
 
 // 2. INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
+  // Update the cart count in the navbar immediately
   updateCartUI(); 
 
-  // Logic for Menu Page
+  // If we are on the Menu Page, try to load the menu items
   if (document.querySelector('.menu-grid')) {
     loadMenu();
     setupTabs();
     setupSearch();
   }
 
-  // Logic for FAQ Page
+  // If we are on the FAQ page, setup the accordions
   if (document.querySelector('.faq-item')) {
     setupFAQ();
   }
 });
 
-// 3. NAVBAR LOGIC
+// 3. NAVBAR & MOBILE MENU LOGIC
 window.addEventListener("scroll", () => {
   if(navbar) navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
@@ -36,22 +37,36 @@ if (menuToggle) {
   });
 }
 
-// 4. LOAD MENU
+// 4. LOAD MENU FUNCTION (The Engine)
 async function loadMenu() {
   try {
+    // Fetch the data from the JSON file
     const response = await fetch('menu-data.json');
+    
+    // Check if the file exists
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
 
+    // Loop through every item in the JSON list
     data.forEach(item => {
+      // Find the specific container for this category (e.g., #appetizers .menu-grid)
       const container = document.querySelector(`#${item.category} .menu-grid`);
       
       if (container) {
+        // Create the HTML card
         const card = document.createElement('div');
         card.className = 'food-card glass-card reveal-item'; 
         
+        // Sanitize data for the onclick event
+        const safeName = item.name.replace(/'/g, "\\'"); // Escape single quotes
+        const safeImage = item.image; 
+        
         card.innerHTML = `
           <div class="card-image-wrapper">
-             <img src="${item.image}" alt="${item.name}" loading="lazy">
+             <img src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.src='images/headshot.jpg'">
           </div>
           <div class="food-info">
             <div class="info-top">
@@ -61,32 +76,46 @@ async function loadMenu() {
             </div>
             <div class="action-row">
               <span class="price-tag">$${item.price.toFixed(2)}</span>
-              <button class="add-btn" onclick="addToCart('${item.id}', '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${item.image}', this)">
-                ADD +
-              </button>
+              <button class="add-btn" onclick="addToCart({
+                  id: '${item.id}', 
+                  name: '${safeName}', 
+                  price: ${item.price}, 
+                  image: '${safeImage}'
+              }, this)">Add +</button>
             </div>
           </div>
         `;
+        // Inject it into the page
         container.appendChild(card);
+      } else {
+        console.warn(`Container not found for category: ${item.category}`);
       }
     });
 
   } catch (error) {
     console.error("Error loading menu:", error);
+    // Show error on screen so you know what happened
+    const grid = document.querySelector('.menu-grid');
+    if(grid) grid.innerHTML = `<p style="color:white; padding:20px;">Error loading menu. Please check console.</p>`;
   }
 }
 
-// 5. TAB LOGIC
+// 5. TAB LOGIC (Switching between Appetizers, Proteins, etc.)
 function setupTabs() {
   const tabs = document.querySelectorAll('.tab-link');
   const contents = document.querySelectorAll('.tab-content');
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
+      // 1. Deactivate all tabs
       tabs.forEach(t => t.classList.remove('active'));
       contents.forEach(c => c.classList.remove('active'));
+      
+      // 2. Activate clicked tab
       tab.classList.add('active');
-      document.getElementById(tab.dataset.tab).classList.add('active');
+      const targetId = tab.dataset.tab;
+      const targetContent = document.getElementById(targetId);
+      if(targetContent) targetContent.classList.add('active');
     });
   });
 }
@@ -98,7 +127,10 @@ function setupSearch() {
 
     searchBar.addEventListener("keyup", (e) => {
         const term = e.target.value.toLowerCase();
+        // Only search within the currently visible tab
         const activeTab = document.querySelector(".tab-content.active");
+        if(!activeTab) return;
+        
         const cards = activeTab.querySelectorAll(".food-card");
 
         cards.forEach(card => {
@@ -129,37 +161,10 @@ function setupFAQ() {
   });
 }
 
-// 8. CART LOGIC
-window.addToCart = function(id, name, price, image, btnElement) {
-  const existingItem = cart.find(item => item.id === id);
-
-  if (existingItem) {
-    existingItem.qty++;
-  } else {
-    cart.push({ id, name, price, image, qty: 1 });
-  }
-
-  localStorage.setItem('anniCart', JSON.stringify(cart));
-  updateCartUI();
-  
-  // Button Feedback
-  if(btnElement) {
-      const originalText = btnElement.innerText;
-      btnElement.innerText = "ADDED";
-      btnElement.style.background = "#fff";
-      btnElement.style.color = "#000";
-      setTimeout(() => {
-          btnElement.innerText = originalText;
-          btnElement.style.background = "";
-          btnElement.style.color = "";
-      }, 800);
-  }
-};
-
+// 8. CART UI UPDATE (Helper)
 function updateCartUI() {
     const cartIcon = document.getElementById('cart-icon');
     const mobileCartIcon = document.getElementById('mobile-cart-icon');
-    
     const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
     
     if(cartIcon) cartIcon.innerText = `Cart (${totalQty})`;
