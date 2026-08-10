@@ -42,7 +42,7 @@ export const dishes = [
     basePrice: 60,
     sizes: [
       { id: 'half', label: 'Half pan', price: 0 },
-      { id: 'full', label: 'Full pan', price: 55 },
+      { id: 'full', label: 'Full pan', price: 65 },
     ],
     addOns: [
       { id: 'chicken-half', label: 'Add Chicken (Half Pan)', price: 20 },
@@ -270,10 +270,10 @@ export const dishes = [
     category: 'island-soul-fusion',
     filterCategories: ['island-soul-fusion', 'main-dishes'],
     description: 'Charred, marinated jerk chicken with scallion and island spice.',
-    basePrice: 95,
+    basePrice: 65,
     sizes: [
       { id: 'half', label: 'Half pan', price: 0 },
-      { id: 'full', label: 'Full pan', price: 90 },
+      { id: 'full', label: 'Full pan', price: 65 },
     ],
     addOns: [],
   },
