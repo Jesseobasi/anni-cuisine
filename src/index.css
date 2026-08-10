@@ -65,13 +65,13 @@ img {
 /* ===== TYPOGRAPHY ===== */
 .script-heading {
   font-family: var(--font-script);
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
 }
 
 .label-text {
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
@@ -79,7 +79,7 @@ img {
 
 .subtitle-text {
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -116,7 +116,7 @@ img {
 }
 .navbar-logo .logo-caps {
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-primary);
@@ -130,7 +130,7 @@ img {
 }
 .navbar-links a {
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -155,7 +155,7 @@ img {
   cursor: pointer;
   font-family: var(--font-body);
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   transition: all var(--transition);
@@ -235,7 +235,7 @@ img {
   border-radius: 6px;
   font-family: var(--font-body);
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
@@ -254,7 +254,7 @@ img {
   color: var(--text-secondary);
   font-family: var(--font-body);
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
@@ -305,7 +305,7 @@ img {
 }
 .hero-label {
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
@@ -314,14 +314,14 @@ img {
 .hero-title {
   font-family: var(--font-script);
   font-size: 5rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 4px;
 }
 .hero-subtitle {
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-primary);
@@ -415,7 +415,7 @@ img {
 }
 .dish-card .view-link {
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
@@ -427,7 +427,7 @@ img {
 }
 .full-menu-link a {
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -549,7 +549,7 @@ img {
 .footer h3 {
   font-family: var(--font-script);
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 12px;
 }
@@ -637,7 +637,7 @@ img {
   border-radius: 20px;
   font-family: var(--font-body);
   font-size: 0.65rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
@@ -694,7 +694,7 @@ img {
 .menu-card .card-name {
   font-family: var(--font-script);
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 8px;
   line-height: 1.2;
@@ -731,7 +731,7 @@ img {
   border-radius: 6px;
   font-family: var(--font-body);
   font-size: 0.6rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
@@ -805,7 +805,7 @@ img {
 .modal-title {
   font-family: var(--font-script);
   font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 20px;
 }
@@ -1043,7 +1043,7 @@ img {
   color: var(--text-muted);
   font-family: var(--font-body);
   font-size: 0.65rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
@@ -1197,7 +1197,7 @@ img {
 }
 .summary-item .item-name {
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-primary);
 }
 .summary-item .item-details {
@@ -1504,7 +1504,7 @@ img {
 .policy-card h3 {
   font-family: var(--font-script);
   font-size: 1.8rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--white);
   margin-bottom: 16px;
 }
@@ -1632,7 +1632,7 @@ img {
   }
   .mobile-nav.open a {
     font-size: 0.72rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-secondary);
