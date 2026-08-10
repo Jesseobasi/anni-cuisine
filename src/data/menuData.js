@@ -39,7 +39,7 @@ export const dishes = [
     category: 'rice-pasta',
     filterCategories: ['rice-pasta'],
     description: 'Creamy peppers-and-spice pasta with island heat.',
-    basePrice: 70,
+    basePrice: 60,
     sizes: [
       { id: 'half', label: 'Half pan', price: 0 },
       { id: 'full', label: 'Full pan', price: 55 },
@@ -211,12 +211,12 @@ export const dishes = [
       { id: 'chicken-med', label: 'Hard Chicken - Medium (8-10)', price: 50 },
       { id: 'chicken-large', label: 'Hard Chicken - Large (15-18)', price: 120 },
       { id: 'chicken-xl', label: 'Hard Chicken - XL (25-30)', price: 220 },
-      
+
       { id: 'goat-small', label: 'Goat - Small (4-5)', price: 10 },
       { id: 'goat-med', label: 'Goat - Medium (8-10)', price: 65 },
       { id: 'goat-large', label: 'Goat - Large (15-18)', price: 145 },
       { id: 'goat-xl', label: 'Goat - XL (25-30)', price: 260 },
-      
+
       { id: 'fish-small', label: 'Fish - Small (4-5)', price: 5 },
       { id: 'fish-med', label: 'Fish - Medium (8-10)', price: 60 },
       { id: 'fish-large', label: 'Fish - Large (15-18)', price: 135 },

@@ -12,6 +12,19 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
     editItem?.addOns?.map(a => a.id) || []
   );
 
+  const filteredAddOns = dish.addOns.filter(addon => {
+    if (addon.id.includes('-half') && selectedSize !== 'half') return false;
+    if (addon.id.includes('-full') && selectedSize !== 'full') return false;
+    return true;
+  });
+
+  function handleSizeChange(sizeId) {
+    if (sizeId !== selectedSize) {
+      setSelectedSize(sizeId);
+      setSelectedAddOns([]);
+    }
+  }
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
@@ -32,7 +45,7 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
     if (step === 0) {
       setStep(1);
     } else if (step === 1) {
-      if (dish.addOns.length > 0) {
+      if (filteredAddOns.length > 0) {
         setStep(2);
       } else {
         setStep(3);
@@ -43,7 +56,7 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
   }
 
   function handleBack() {
-    if (step === 3 && dish.addOns.length === 0) {
+    if (step === 3 && filteredAddOns.length === 0) {
       setStep(1);
     } else {
       setStep(prev => Math.max(0, prev - 1));
@@ -59,7 +72,7 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
     onClose();
   }
 
-  const visibleSteps = dish.addOns.length > 0
+  const visibleSteps = filteredAddOns.length > 0
     ? STEPS
     : STEPS.filter(s => s !== 'ADD-ONS');
 
@@ -76,7 +89,7 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
             <span key={s}>
               {i > 0 && <span className="separator"> › </span>}
               <span className={
-                (dish.addOns.length > 0 ? step === i : (i === 0 ? step === 0 : i === 1 ? step === 1 : step === 3))
+                (filteredAddOns.length > 0 ? step === i : (i === 0 ? step === 0 : i === 1 ? step === 1 : step === 3))
                   ? 'active' : ''
               }>{s}</span>
             </span>
@@ -101,7 +114,7 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
                 <div
                   key={size.id}
                   className={`option-item ${selectedSize === size.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedSize(size.id)}
+                  onClick={() => handleSizeChange(size.id)}
                 >
                   <span className="option-label">{size.label}</span>
                   <span className="option-price">
@@ -118,7 +131,7 @@ export default function CustomizeModal({ dish, onClose, editItem }) {
           <>
             <p className="modal-desc">Add a protein (optional):</p>
             <div className="option-list">
-              {dish.addOns.map(addon => (
+              {filteredAddOns.map(addon => (
                 <div
                   key={addon.id}
                   className={`option-item ${selectedAddOns.includes(addon.id) ? 'selected' : ''}`}
