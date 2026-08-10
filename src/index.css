@@ -40,6 +40,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  text-align: center;
 }
 
 #root {
@@ -331,11 +332,12 @@ img {
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
   max-width: 440px;
 }
 .hero-buttons {
   display: flex;
+  justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
 }
@@ -350,7 +352,7 @@ img {
   padding: 8px;
   background: var(--bg-card);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  margin-left: auto;
+  margin: 0 auto;
 }
 
 /* ===== MEET ANNELLE ===== */
@@ -373,6 +375,7 @@ img {
   padding: 8px;
   background: var(--bg-card);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
 .meet-text {
   font-size: 0.92rem;
@@ -486,9 +489,10 @@ img {
   padding: 8px;
   background: var(--bg-card);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
 .tag-text {
-  text-align: right;
+  text-align: center;
 }
 .tag-text .script-heading {
   font-size: 3.5rem;
@@ -956,7 +960,7 @@ img {
   color: var(--text-secondary);
 }
 .cart-item-price {
-  text-align: right;
+  text-align: center;
 }
 .cart-item-price .price {
   font-family: var(--font-script);
@@ -1302,7 +1306,7 @@ img {
   margin-bottom: 28px;
 }
 .confirmation-items {
-  text-align: left;
+  text-align: center;
   margin-bottom: 16px;
 }
 .confirmation-items p {
@@ -1584,7 +1588,7 @@ img {
   border-collapse: collapse;
 }
 .price-table th {
-  text-align: left;
+  text-align: center;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.18em;
