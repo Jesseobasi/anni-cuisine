@@ -4,6 +4,7 @@ import { getAllOrdersAndInquiries, updateAdminNote } from '../lib/db';
 export default function Admin() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
+  const [pin, setPin] = useState('');
   const [data, setData] = useState({ orders: [], inquiries: [] });
 
   useEffect(() => {
@@ -14,10 +15,10 @@ export default function Admin() {
 
   function handleLogin(e) {
     e.preventDefault();
-    if (email.toLowerCase() === 'anniiscuisine@gmail.com') {
+    if (email.toLowerCase() === 'anniiscuisine@gmail.com' && pin === '2004') {
       setIsLoggedIn(true);
     } else {
-      alert('Access denied. Unauthorized email.');
+      alert('Access denied. Invalid email or PIN.');
     }
   }
 
@@ -28,12 +29,12 @@ export default function Admin() {
 
   function getUrgencyLevel(pickupDate) {
     if (!pickupDate) return { color: 'var(--text-secondary)', label: 'No Date' };
-    
+
     const today = new Date();
     const target = new Date(pickupDate);
     const diffTime = target - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays < 0) return { color: 'var(--text-muted)', label: 'Past' };
     if (diffDays <= 3) return { color: '#e74c3c', label: 'High Urgency (🔴 <3 days)' };
     if (diffDays <= 7) return { color: '#f39c12', label: 'Med Urgency (🟡 <7 days)' };
@@ -44,7 +45,7 @@ export default function Admin() {
     if (!items || items.length === 0) return 3;
     let totalQuantity = 0;
     items.forEach(item => totalQuantity += item.quantity);
-    
+
     // Simple heuristic: large orders need more prep time
     if (totalQuantity > 10) return 14; // 2 weeks for very large orders
     if (totalQuantity > 5) return 7;   // 1 week for medium-large orders
@@ -57,16 +58,28 @@ export default function Admin() {
         <section className="section" style={{ maxWidth: '400px', margin: '0 auto', textAlign: 'center' }}>
           <h1 className="script-heading" style={{ fontSize: '3rem', marginBottom: '24px' }}>Admin Login</h1>
           <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '32px' }}>
-            Please enter your authorized email to access the dashboard. (anniiscuisine@gmail.com)
+            Please enter your authorized email and PIN to access the dashboard.
           </p>
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={e => setEmail(e.target.value)} 
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               placeholder="Email address"
               style={{
-                background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-subtle)', 
+                background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-subtle)',
+                padding: '12px', borderRadius: '6px', color: 'var(--text-primary)'
+              }}
+              required
+            />
+            <input
+              type="password"
+              value={pin}
+              onChange={e => setPin(e.target.value)}
+              placeholder="PIN"
+              maxLength="4"
+              style={{
+                background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-subtle)',
                 padding: '12px', borderRadius: '6px', color: 'var(--text-primary)'
               }}
               required
@@ -87,26 +100,26 @@ export default function Admin() {
         </div>
 
         <div style={{ display: 'grid', gap: '40px', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))' }}>
-          
+
           {/* Orders Column */}
           <div>
             <h2 className="script-heading" style={{ fontSize: '2.5rem', marginBottom: '24px', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '12px' }}>
               Orders ({data.orders.length})
             </h2>
             {data.orders.length === 0 && <p style={{ color: 'var(--text-muted)' }}>No orders yet.</p>}
-            
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               {data.orders.sort((a, b) => new Date(a.pickupDate) - new Date(b.pickupDate)).map(order => {
                 const urgency = getUrgencyLevel(order.pickupDate);
                 const prepDays = getRecommendedPrepDays(order.items);
-                
+
                 return (
                   <div key={order.id} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '24px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
                       <h3 style={{ fontSize: '1.2rem', color: 'var(--white)' }}>{order.customer}</h3>
                       <span style={{ color: urgency.color, fontSize: '0.8rem', fontWeight: 'bold' }}>{urgency.label}</span>
                     </div>
-                    
+
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>
                       <p><strong>Pickup:</strong> {order.pickupDate} at {order.pickupTime}</p>
                       <p><strong>Contact:</strong> {order.email} / {order.phone}</p>
@@ -130,7 +143,7 @@ export default function Admin() {
 
                     <div>
                       <label style={{ display: 'block', fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '8px', letterSpacing: '0.1em' }}>Admin Notes &amp; Reminders</label>
-                      <textarea 
+                      <textarea
                         value={order.adminNotes}
                         onChange={(e) => handleNoteChange('order', order.id, e.target.value)}
                         placeholder="Add reminders here..."
@@ -149,18 +162,18 @@ export default function Admin() {
               Inquiries ({data.inquiries.length})
             </h2>
             {data.inquiries.length === 0 && <p style={{ color: 'var(--text-muted)' }}>No inquiries yet.</p>}
-            
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               {data.inquiries.sort((a, b) => new Date(a.pickupDate) - new Date(b.pickupDate)).map(inq => {
                 const urgency = getUrgencyLevel(inq.pickupDate);
-                
+
                 return (
                   <div key={inq.id} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: '8px', padding: '24px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
                       <h3 style={{ fontSize: '1.2rem', color: 'var(--white)' }}>{inq.customer}</h3>
                       <span style={{ color: urgency.color, fontSize: '0.8rem', fontWeight: 'bold' }}>{urgency.label}</span>
                     </div>
-                    
+
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>
                       <p><strong>Event Date:</strong> {inq.pickupDate} at {inq.pickupTime}</p>
                       <p><strong>Occasion:</strong> {inq.occasion} ({inq.guests} guests)</p>
@@ -174,7 +187,7 @@ export default function Admin() {
 
                     <div>
                       <label style={{ display: 'block', fontSize: '0.7rem', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '8px', letterSpacing: '0.1em' }}>Admin Notes &amp; Reminders</label>
-                      <textarea 
+                      <textarea
                         value={inq.adminNotes}
                         onChange={(e) => handleNoteChange('inquiry', inq.id, e.target.value)}
                         placeholder="Add reminders here..."
