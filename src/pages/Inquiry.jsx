@@ -6,10 +6,58 @@ export default function Inquiry() {
   const { showToast } = useCart();
   const [deposit, setDeposit] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    const messageContent = `NEW INQUIRY
+---------------------------
+Customer: ${data.name}
+Phone: ${data.phone || 'N/A'}
+Email: ${data.email}
+
+Occasion: ${data.occasion || 'N/A'}
+Guest Count: ${data.guests || 'N/A'}
+Pickup: ${data.pickupDate || 'N/A'} at ${data.pickupTime || 'N/A'}
+
+Request Details:
+${data.details || 'N/A'}
+
+Allergies/Dietary:
+${data.allergies || 'None'}
+
+Special Instructions:
+${data.special || 'None'}
+
+Requested Payment Plan/Deposit: ${deposit || 'Not specified'}
+---------------------------`;
+
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "30218111-15fe-4095-859a-533a0eeba4cf",
+          subject: `New Inquiry: ${data.name}`,
+          from_name: "Anniis Cuisine Inquiries",
+          replyto: data.email,
+          message: messageContent,
+        }),
+      });
+    } catch (error) {
+      console.error("Submission failed", error);
+    }
+
     setSubmitted(true);
+    setIsSubmitting(false);
     showToast('Inquiry submitted ✓');
   }
 
@@ -52,17 +100,17 @@ export default function Inquiry() {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="inq-name">Full Name</label>
-                  <input type="text" id="inq-name" required />
+                  <input type="text" id="inq-name" name="name" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="inq-phone">Phone</label>
-                  <input type="tel" id="inq-phone" />
+                  <input type="tel" id="inq-phone" name="phone" />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group full">
                   <label htmlFor="inq-email">Email</label>
-                  <input type="email" id="inq-email" required />
+                  <input type="email" id="inq-email" name="email" required />
                 </div>
               </div>
             </fieldset>
@@ -72,21 +120,21 @@ export default function Inquiry() {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="inq-occasion">Occasion</label>
-                  <input type="text" id="inq-occasion" placeholder="Birthday, brunch, wedding..." />
+                  <input type="text" id="inq-occasion" name="occasion" placeholder="Birthday, brunch, wedding..." />
                 </div>
                 <div className="form-group">
                   <label htmlFor="inq-guests">Guest Count</label>
-                  <input type="number" id="inq-guests" />
+                  <input type="number" id="inq-guests" name="guests" />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="inq-date">Pickup Date</label>
-                  <input type="date" id="inq-date" />
+                  <input type="date" id="inq-date" name="pickupDate" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="inq-time">Pickup Time</label>
-                  <input type="time" id="inq-time" />
+                  <input type="time" id="inq-time" name="pickupTime" />
                 </div>
               </div>
             </fieldset>
@@ -96,19 +144,19 @@ export default function Inquiry() {
               <div className="form-row">
                 <div className="form-group full">
                   <label htmlFor="inq-details">What would you like? Dishes, pan sizes, proteins, flavors</label>
-                  <textarea id="inq-details" rows="4"></textarea>
+                  <textarea id="inq-details" name="details" rows="4"></textarea>
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group full">
                   <label htmlFor="inq-allergies">Allergies &amp; Dietary Restrictions</label>
-                  <textarea id="inq-allergies" rows="3"></textarea>
+                  <textarea id="inq-allergies" name="allergies" rows="3"></textarea>
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group full">
                   <label htmlFor="inq-special">Special Instructions &amp; Additional Information</label>
-                  <textarea id="inq-special" rows="3"></textarea>
+                  <textarea id="inq-special" name="special" rows="3"></textarea>
                 </div>
               </div>
             </fieldset>
@@ -140,8 +188,8 @@ export default function Inquiry() {
             </fieldset>
 
             <div className="inquiry-submit">
-              <button type="submit" className="btn-gold" style={{ minWidth: '200px' }}>
-                Submit Inquiry
+              <button type="submit" className="btn-gold" style={{ minWidth: '200px' }} disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
               </button>
             </div>
 

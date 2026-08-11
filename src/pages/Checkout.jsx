@@ -17,9 +17,57 @@ export default function Checkout() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function handleSubmit(e) {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    const orderDetails = items.map(item => {
+      let desc = `${item.quantity}x ${item.name} (${item.size})`;
+      if (item.addOns.length > 0) {
+        desc += `\nAdd-ons: ${item.addOns.map(a => a.label).join(', ')}`;
+      }
+      desc += `\nPrice: $${item.unitPrice * item.quantity}`;
+      return desc;
+    }).join('\n\n');
+
+    const messageContent = `NEW ORDER
+---------------------------
+Customer: ${form.name}
+Phone: ${form.phone || 'N/A'}
+Email: ${form.email}
+
+Pickup: ${form.pickupDate || 'N/A'} at ${form.pickupTime || 'N/A'}
+Payment Method: ${form.paymentMethod || 'N/A'}
+
+Order Total: $${subtotal}
+
+Items:
+${orderDetails}
+---------------------------`;
+
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "30218111-15fe-4095-859a-533a0eeba4cf",
+          subject: `New Catering Order: ${form.name}`,
+          from_name: "Anniis Cuisine Orders",
+          replyto: form.email,
+          message: messageContent,
+        }),
+      });
+    } catch (error) {
+      console.error("Submission failed", error);
+    }
+
     const order = placeOrder(form);
+    setIsSubmitting(false);
     navigate('/order-confirmed', { state: { order } });
   }
 
@@ -135,7 +183,9 @@ export default function Checkout() {
               </div>
 
               <div className="summary-actions">
-                <button type="submit" className="btn-gold">Place Order</button>
+                <button type="submit" className="btn-gold" disabled={isSubmitting}>
+                  {isSubmitting ? 'Placing Order...' : 'Place Order'}
+                </button>
                 <Link to="/cart" className="btn-text">Back to Cart</Link>
               </div>
             </div>
