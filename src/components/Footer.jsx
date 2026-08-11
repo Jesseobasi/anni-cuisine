@@ -17,6 +17,7 @@ export default function Footer() {
           <p>@Therealannelle</p>
           <p>@anniiscuisine</p>
           <a href="mailto:Anniiscuisine@gmail.com">Anniiscuisine@gmail.com</a>
+          <Link to="/admin" style={{ display: 'inline-block', marginTop: '12px', fontSize: '0.65rem', color: 'var(--text-muted)' }}>Admin Login</Link>
         </div>
       </div>
     </footer>

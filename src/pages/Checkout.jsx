@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { saveOrderToDb } from '../lib/db';
 
 export default function Checkout() {
   const { items, getSubtotal, placeOrder } = useCart();
@@ -65,6 +66,22 @@ ${orderDetails}
     } catch (error) {
       console.error("Submission failed", error);
     }
+
+    saveOrderToDb({
+      customer: form.name,
+      phone: form.phone,
+      email: form.email,
+      pickupDate: form.pickupDate,
+      pickupTime: form.pickupTime,
+      paymentMethod: form.paymentMethod,
+      total: subtotal,
+      items: items.map(item => ({
+        name: item.name,
+        size: item.size,
+        quantity: item.quantity,
+        addOns: item.addOns.map(a => a.label)
+      }))
+    });
 
     const order = placeOrder(form);
     setIsSubmitting(false);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { saveInquiryToDb } from '../lib/db';
 
 export default function Inquiry() {
   const { showToast } = useCart();
@@ -55,6 +56,20 @@ Requested Payment Plan/Deposit: ${deposit || 'Not specified'}
     } catch (error) {
       console.error("Submission failed", error);
     }
+
+    saveInquiryToDb({
+      customer: data.name,
+      phone: data.phone,
+      email: data.email,
+      occasion: data.occasion,
+      guests: data.guests,
+      pickupDate: data.pickupDate,
+      pickupTime: data.pickupTime,
+      details: data.details,
+      allergies: data.allergies,
+      special: data.special,
+      depositRequested: deposit
+    });
 
     setSubmitted(true);
     setIsSubmitting(false);

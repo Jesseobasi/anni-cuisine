@@ -12,6 +12,7 @@ import Policy from './pages/Policy';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
+import Admin from './pages/Admin';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-confirmed" element={<OrderConfirmation />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
         <Footer />
         <ContactButton />
