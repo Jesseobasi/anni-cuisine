@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { saveInquiryToDb } from '../lib/db';
+import { validateDateTime } from '../lib/availability';
 
 export default function Inquiry() {
   const { showToast } = useCart();
@@ -11,10 +12,17 @@ export default function Inquiry() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setIsSubmitting(true);
     
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+
+    const validation = validateDateTime(data.pickupDate, data.pickupTime);
+    if (!validation.valid) {
+      alert(validation.message);
+      return;
+    }
+
+    setIsSubmitting(true);
 
     const messageContent = `NEW INQUIRY
 ---------------------------

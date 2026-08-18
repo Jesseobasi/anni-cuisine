@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { saveOrderToDb } from '../lib/db';
+import { validateDateTime } from '../lib/availability';
 
 export default function Checkout() {
   const { items, getSubtotal, placeOrder } = useCart();
@@ -22,6 +23,13 @@ export default function Checkout() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const validation = validateDateTime(form.pickupDate, form.pickupTime);
+    if (!validation.valid) {
+      alert(validation.message);
+      return;
+    }
+
     setIsSubmitting(true);
 
     const orderDetails = items.map(item => {
