@@ -1748,3 +1748,82 @@ img {
     font-size: 2.8rem;
   }
 }
+
+/* ===== CUSTOM DATEPICKER ===== */
+.custom-datepicker-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all var(--transition);
+}
+.custom-datepicker-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.react-datepicker {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  font-family: var(--font-body) !important;
+  color: var(--text-primary) !important;
+}
+
+.react-datepicker__header {
+  background-color: var(--bg-primary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: var(--gold) !important;
+}
+
+.react-datepicker__day-name {
+  color: var(--text-secondary) !important;
+}
+
+.react-datepicker__day {
+  color: var(--text-primary) !important;
+}
+.react-datepicker__day:hover {
+  background-color: var(--border-subtle) !important;
+  color: var(--gold) !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: var(--gold) !important;
+  color: var(--bg-primary) !important;
+}
+.react-datepicker__day--disabled {
+  color: var(--text-muted) !important;
+  opacity: 0.3;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid var(--border-subtle) !important;
+}
+
+.react-datepicker__time {
+  background-color: var(--bg-secondary) !important;
+}
+
+.react-datepicker__time-list-item {
+  color: var(--text-primary) !important;
+}
+
+.react-datepicker__time-list-item:hover {
+  background-color: var(--border-subtle) !important;
+  color: var(--gold) !important;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: var(--gold) !important;
+  color: var(--bg-primary) !important;
+}

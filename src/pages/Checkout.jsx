@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { saveOrderToDb } from '../lib/db';
-import { validateDateTime } from '../lib/availability';
+import { validateDateTime, isDateAvailable, filterAvailableTimes } from '../lib/availability';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function Checkout() {
   const { items, getSubtotal, placeOrder } = useCart();
@@ -12,6 +14,7 @@ export default function Checkout() {
     pickupDate: '', pickupTime: '',
     paymentMethod: '',
   });
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const subtotal = getSubtotal();
 
@@ -143,13 +146,32 @@ ${orderDetails}
             <fieldset className="form-fieldset">
               <legend>Pickup</legend>
               <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="checkout-date">Pickup Date</label>
-                  <input type="date" id="checkout-date" name="pickupDate" value={form.pickupDate} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="checkout-time">Pickup Time</label>
-                  <input type="time" id="checkout-time" name="pickupTime" value={form.pickupTime} onChange={handleChange} />
+                <div className="form-group full">
+                  <label htmlFor="checkout-datetime">Pickup Date & Time</label>
+                  <DatePicker
+                    id="checkout-datetime"
+                    selected={selectedDate}
+                    onChange={(date) => {
+                      setSelectedDate(date);
+                      if (date) {
+                        const year = date.getFullYear();
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const hours = String(date.getHours()).padStart(2, '0');
+                        const mins = String(date.getMinutes()).padStart(2, '0');
+                        setForm(prev => ({ ...prev, pickupDate: `${year}-${month}-${day}`, pickupTime: `${hours}:${mins}` }));
+                      } else {
+                        setForm(prev => ({ ...prev, pickupDate: '', pickupTime: '' }));
+                      }
+                    }}
+                    filterDate={isDateAvailable}
+                    filterTime={(time) => filterAvailableTimes(time, selectedDate || time)}
+                    showTimeSelect
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    className="custom-datepicker-input"
+                    placeholderText="Select available date and time..."
+                    required
+                  />
                 </div>
               </div>
             </fieldset>
