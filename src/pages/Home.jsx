@@ -31,12 +31,12 @@ export default function Home() {
         </div>
         <div className="meet-content">
           <div className="meet-image">
-            <video 
-              src="/videos/tasty_tue.mov" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
+            <video
+              src="/videos/tasty_tue.mov"
+              autoPlay
+              loop
+              muted
+              playsInline
               style={{ width: '100%', borderRadius: '200px 200px 16px 16px', border: '4px solid var(--gold)', padding: '8px', background: 'var(--bg-card)', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)', margin: '0 auto', display: 'block', objectFit: 'cover' }}
             >
               Your browser does not support the video tag.
@@ -47,7 +47,7 @@ export default function Home() {
               Tasty Tuesday is our special weekly event where you can come try our newest, exclusive dishes before they hit the menu—and get featured on video giving your live review! Join us for a fun tasting experience and share your reactions with the world. Please note that there is a fee to participate, which varies depending on the featured food that week.
             </p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkyrivLtd_kaYtaiYZJ811UcvbOChInq7mlDAMAXWyLnDGrA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="btn-gold">
-              Pre-order for Tuesday
+              RSVP for Tasty Tuesday
             </a>
           </div>
         </div>
