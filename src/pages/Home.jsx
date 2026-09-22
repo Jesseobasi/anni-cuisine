@@ -44,7 +44,7 @@ export default function Home() {
           </div>
           <div className="meet-text" style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
             <p>
-              Tasty Tuesday is our special weekly event where you can come try our newest, exclusive dishes before they hit the menu—and get featured on video giving your live review! Join us for a fun tasting experience and share your reactions with the world. Please note that there is a fee to participate, which varies depending on the featured food that week.
+              Tasty Tuesday is our special weekly event where you can come try our exclusive dishes and get featured on video giving your live review! Join us for a fun tasting experience and share your reactions with the world. Please note that there is a fee to participate, which varies depending on the featured food that week.
             </p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkyrivLtd_kaYtaiYZJ811UcvbOChInq7mlDAMAXWyLnDGrA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="btn-gold">
               RSVP for Tasty Tuesday
