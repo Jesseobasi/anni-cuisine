@@ -32,13 +32,14 @@ export default function Home() {
         <div className="meet-content">
           <div className="meet-image">
             <video
-              src="/videos/tasty_tues.mov"
               autoPlay
               loop
               muted
               playsInline
               style={{ width: '100%', borderRadius: '200px 200px 16px 16px', border: '4px solid var(--gold)', padding: '8px', background: 'var(--bg-card)', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)', margin: '0 auto', display: 'block', objectFit: 'cover' }}
             >
+              <source src="/videos/tasty_tues.mp4" type="video/mp4" />
+              <source src="/videos/tasty_tues.mov" type="video/quicktime" />
               Your browser does not support the video tag.
             </video>
           </div>
