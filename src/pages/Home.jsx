@@ -32,7 +32,7 @@ export default function Home() {
         <div className="meet-content">
           <div className="meet-image">
             <video
-              src="/videos/tasty_tue.mov"
+              src="/videos/tasty_tues.mov"
               autoPlay
               loop
               muted
