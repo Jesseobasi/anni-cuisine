@@ -29,7 +29,7 @@ export default function Home() {
         <div className="section-header">
           <h2 className="script-heading">Tasty Tuesday</h2>
         </div>
-        <div className="meet-content">
+        <div className="meet-content" style={{ alignItems: 'center' }}>
           <div className="meet-image">
             <video
               autoPlay
@@ -43,10 +43,12 @@ export default function Home() {
               Your browser does not support the video tag.
             </video>
           </div>
-          <div className="meet-text" style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
-            <p>
-              Tasty Tuesday is our special weekly event where you can come try our exclusive dishes and get featured on video giving your live review! Join us for a fun tasting experience and share your reactions with the world. Please note that there is a fee to participate, which varies depending on the featured food that week.
-            </p>
+          <div className="meet-text" style={{ display: 'flex', flexDirection: 'column', gap: '32px', alignItems: 'flex-start' }}>
+            <div>
+              Tasty Tuesday is our special weekly event where you can come try our exclusive dishes and get featured on video giving your live review! Join us for a fun tasting experience and share your reactions with the world.
+              <br /><br />
+              Please note that there is a fee to participate, which varies depending on the featured food that week.
+            </div>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkyrivLtd_kaYtaiYZJ811UcvbOChInq7mlDAMAXWyLnDGrA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="btn-gold">
               RSVP for Tasty Tuesday
             </a>
