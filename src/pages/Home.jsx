@@ -24,6 +24,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Tasty Tuesday */}
+      <section className="section">
+        <div className="section-header">
+          <h2 className="script-heading">Tasty Tuesday</h2>
+        </div>
+        <div className="meet-content">
+          <div className="meet-image">
+            <video 
+              src="/videos/tasty_tue.mov" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              style={{ width: '100%', borderRadius: '200px 200px 16px 16px', border: '4px solid var(--gold)', padding: '8px', background: 'var(--bg-card)', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)', margin: '0 auto', display: 'block', objectFit: 'cover' }}
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div className="meet-text" style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
+            <p>
+              Tasty Tuesday is our special weekly event where we feature exclusive dishes, creative new recipes, and limited-time offers. It's the perfect opportunity to explore new flavors and enjoy Chef Anni's latest culinary creations before they make it to our main menu. Every Tuesday is a new adventure in taste!
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkyrivLtd_kaYtaiYZJ811UcvbOChInq7mlDAMAXWyLnDGrA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" className="btn-gold">
+              Pre-order for Tuesday
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Meet Annelle */}
       <section className="section">
         <div className="section-header">
